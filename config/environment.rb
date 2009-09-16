@@ -41,15 +41,15 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 
   # Set DataMapper to use dm-appengine adapter
-#  require 'dm-core'
-#  DataMapper.setup(:default, "appengine://auto")
+  require 'dm-core'
+  DataMapper.setup(:default, "appengine://auto")
 
   # # Set Logger from appengine-apis, all environments
-#  require 'appengine-apis/logger'
-#  config.logger = AppEngine::Logger.new
+  require 'appengine-apis/logger'
+  config.logger = AppEngine::Logger.new
 
   # # Skip frameworks you're not going to use.
-#  config.frameworks -= [ :active_record ]
+  config.frameworks -= [ :active_record ]
 end
 
 # We need this for WebDAV to function
