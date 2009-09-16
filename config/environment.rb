@@ -13,6 +13,7 @@ Rails::Initializer.run do |config|
 
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
+  config.load_paths += %W( #{RAILS_ROOT}/app/sweepers )
 
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
@@ -51,3 +52,8 @@ Rails::Initializer.run do |config|
 #  config.frameworks -= [ :active_record ]
 end
 
+# We need this for WebDAV to function
+module ActionController
+  #  ActionController::ACCEPTED_HTTP_METHODS << %w( propfind proppatch mkcol copy  move lock unlock )
+  ActionController::ACCEPTED_HTTP_METHODS = Set.new( %w( get head put post delete options propfind proppatch mkcol copy move lock unlock ) )
+end

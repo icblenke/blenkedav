@@ -1,6 +1,6 @@
 require 'appengine-rack'
 AppEngine::Rack.configure_app(
-    :application => "icblenke",
+    :application => "blenkedav",
     :version => 11)
 
 %w{R db/ doc/ log/ script/ test/ tmp/}.each do |x|

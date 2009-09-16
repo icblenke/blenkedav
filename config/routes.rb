@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.connect 'dav/*path_info', :controller => 'storage', :action => 'webdav'
+
+  map.root :controller => "storage", :action => "index"
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
