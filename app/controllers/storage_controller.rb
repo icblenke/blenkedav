@@ -3,14 +3,6 @@ class StorageController < ActionController::Base
 
   act_as_railsdav
 
-#  def index
-#    logger.info("StorageController::index")
-#  end
-
-#  def ping
-#    render :text => "ping"
-#  end
-
   def mkcol_for_path(path)
     logger.info("mkcol_for_path('#{path}')")
     parent=StorageDirectory.new

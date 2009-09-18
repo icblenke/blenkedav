@@ -6,11 +6,11 @@ require 'stringio'
 AppEngine::Rack.configure_app(
     :ssl_enabled => true,
     :application => "blenkedav",
-    :version => 7)
+    :version => 12)
 
 AppEngine::Rack.app.inbound_services << :xmpp_message
 
-%w{.git R db/ doc/ log/ script/ test/ tmp/}.each do |x|
+%w{.git R examples/ db/ doc/ log/ script/ test/ tmp/}.each do |x|
   AppEngine::Rack.app.resource_files.exclude "/#{x}**"
 end
 ENV['RAILS_ENV'] = AppEngine::Rack.environment

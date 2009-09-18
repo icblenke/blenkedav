@@ -41,8 +41,8 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 
   # Set DataMapper to use dm-appengine adapter
-#  require 'dm-core'
-#  DataMapper.setup(:default, "appengine://auto")
+  require 'dm-core'
+  DataMapper.setup(:default, "appengine://auto")
 
   # Set Logger from appengine-apis, all environments
   require 'appengine-apis/logger'
