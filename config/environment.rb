@@ -52,8 +52,18 @@ Rails::Initializer.run do |config|
   config.frameworks -= [ :active_record ]
 end
 
-# We need this for WebDAV to function
-module ActionController
-  #  ActionController::ACCEPTED_HTTP_METHODS << %w( propfind proppatch mkcol copy  move lock unlock )
-  ActionController::ACCEPTED_HTTP_METHODS = Set.new( %w( get head put post delete options propfind proppatch mkcol copy move lock unlock ) )
+# Enable WebDAV HTTP methods
+#
+WEBDAV_HTTP_METHODS = %w(propfind proppatch mkcol copy move lock unlock report)
+WEBDAV_HTTP_METHODS.each do |method|
+  #this will make the methods accessible for your routing
+  ActionController::Routing::HTTP_METHODS << method.to_sym
 end
+WEBDAV_HTTP_METHOD_LOOKUP = WEBDAV_HTTP_METHODS.inject({}) { |h, m| h[m] = h[m.upcase] = m.to_sym; h }
+
+#this adds the "new" methods to action controller
+
+ActionController::Request::HTTP_METHODS.concat(WEBDAV_HTTP_METHODS)
+ActionController::Request::HTTP_METHOD_LOOKUP.merge!(WEBDAV_HTTP_METHOD_LOOKUP)
+
+#

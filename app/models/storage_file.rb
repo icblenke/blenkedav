@@ -5,7 +5,7 @@ class StorageFile
 
   # Metadata
   property :storage_directory_id, Integer, :key => true
-  property :name, String, :nullable => false, :messages => { :presence => "A file name is required" }
+  property :name, String, :nullable => false
   property :created_at, Time
   property :updated_at, Time
   property :deleted, Boolean, :nullable => false, :default => false
@@ -13,6 +13,6 @@ class StorageFile
   # Data
   property :content, String
 
-  validates_is_unique :name, :scope => :storage_directory_id,
-    :message => "There is already a file named that there"
+#  validates_is_unique :name, :scope => :storage_directory_id,
+#    :message => "There is already a file named that there"
 end

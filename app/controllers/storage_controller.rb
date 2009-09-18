@@ -4,7 +4,6 @@ class StorageController < ActionController::Base
   act_as_railsdav
 
   def mkcol_for_path(path)
-    logger.info("mkcol_for_path('#{path}')")
     parent=StorageDirectory.new
     parent.parent_id=nil
     directory_name=path
@@ -21,7 +20,6 @@ class StorageController < ActionController::Base
   end
 
   def write_content_to_path(path, content)
-    logger.info("write_content_to_path('#{path}','#{content}')")
     parent=StorageDirectory.new
     parent.parent_id=nil
     file_name=path
@@ -39,15 +37,12 @@ class StorageController < ActionController::Base
   end
 
   def copy_to_path(resource, dest_path, depth)
-    logger.info("copy_to_path('#{resource}','#{dest_path}','#{depth}')")
   end
 
   def move_to_path(resource, dest_path, depth)
-    logger.info("move_to_path('#{resource}','#{dest_path}','#{depth}')")
   end
 
   def get_resource_for_path(path)
-    logger.info("get_resource_for_path('#{path}')")
     path
   end
 
