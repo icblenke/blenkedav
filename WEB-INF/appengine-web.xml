@@ -1,9 +1,10 @@
 <appengine-web-app xmlns='http://appengine.google.com/ns/1.0'>
   <application>blenkedav</application>
-  <version>1</version>
+  <version>7</version>
   <public-root>/public</public-root>
   <static-files/>
   <resource-files>
+    <exclude path='/.git**'/>
     <exclude path='/R**'/>
     <exclude path='/db/**'/>
     <exclude path='/doc/**'/>
@@ -17,4 +18,8 @@
     <property name='jruby.management.enabled' value='false'/>
     <property name='jruby.rack.input.rewindable' value='false'/>
   </system-properties>
+  <ssl-enabled>true</ssl-enabled>
+  <inbound-services>
+    <service>xmpp_message</service>
+  </inbound-services>
 </appengine-web-app>
