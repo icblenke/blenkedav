@@ -2,7 +2,7 @@ class StorageResource
   include WebDavResource 
 
   def href
-    '/'
+    nil
   end
 
   def initialize(path)
