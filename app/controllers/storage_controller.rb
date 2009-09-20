@@ -43,7 +43,8 @@ class StorageController < ActionController::Base
   end
 
   def get_resource_for_path(path)
-    StorageResource.new(path)
+    return file if file=Storage::File.first(:path => path)
+    return directory if file=Storage::Directory.first(:path => path)
   end
 
 #  def index
