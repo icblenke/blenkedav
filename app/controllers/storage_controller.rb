@@ -4,32 +4,32 @@ class StorageController < ActionController::Base
   act_as_railsdav
 
   def mkcol_for_path(path)
-    parent=StorageDirectory.new
+    parent=Storage::Directory.new
     parent.parent_id=nil
     directory_name=path
     path.split(/\//).each do |name|
       next if name.length == 0
-      parent=StorageDirectory.all( :parent_id => parent.parent_id,
+      parent=Storage::Directory.all( :parent_id => parent.parent_id,
 				   :name => name )
       directory_name=name
     end
-    collection=StorageDirectory.new
+    collection=Storage::Directory.new
     collection.parent_id=parent.parent_id
     collection.name=directory_name
     collection.save
   end
 
   def write_content_to_path(path, content)
-    parent=StorageDirectory.new
+    parent=Storage::Directory.new
     parent.parent_id=nil
     file_name=path
     path.split(/\//).each do |name|
       next if name.length == 0
-      parent=StorageDirectory.all( :parent_id => parent.parent_id,
+      parent=Storage::Directory.all( :parent_id => parent.parent_id,
 				   :name => name )
       file_name=name
     end
-    file=StorageFile.new
+    file=Storage::File.new
     file.storage_directory_id=parent.parent_id
     file.name=directory_name
     file.content=content
@@ -47,7 +47,7 @@ class StorageController < ActionController::Base
   end
 
 #  def index
-#    StorageFile.all
+#    Storage::File.all
 #  end
 	
   def after_webdav_put
