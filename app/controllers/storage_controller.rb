@@ -43,7 +43,7 @@ class StorageController < ActionController::Base
   end
 
   def get_resource_for_path(path)
-    path
+    StorageResource.new(path)
   end
 
 #  def index

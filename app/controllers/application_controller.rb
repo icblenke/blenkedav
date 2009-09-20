@@ -13,17 +13,17 @@ protected
   def log_error(exception) 
     super(exception)
 
-    begin
-      AppEngine::Mail.send_to_admins("blenkedav@blenke.com",
-                                     "BlenkeDAV Error",
-                                     { exception,
-                                       clean_backtrace(exception),
-			               params,
-                                       request.env
-                                     }.to_json
-                                    )
-    rescue => e
-      logger.error(e)
-    end
+#    begin
+#      AppEngine::Mail.send_to_admins("blenkedav@blenke.com",
+#                                     "BlenkeDAV Error",
+#                                     { exception,
+#                                       clean_backtrace(exception),
+#			               params,
+#                                       request.env
+#                                     }.to_json
+#                                    )
+#    rescue => e
+#      logger.error(e)
+#    end
   end
 end
