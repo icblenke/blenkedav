@@ -1,4 +1,4 @@
-class StorageDirectory
+class Storage::Directory
   include DataMapper::Resource
 
   property :id, Serial
@@ -9,6 +9,11 @@ class StorageDirectory
   property :created_at, Time
   property :updated_at, Time
   property :deleted, Boolean, :default => false
+
+  has n, :files, :class_name => 'Storage::File'
+
+  belongs_to :parent, :child_key => [ :parent_id ],
+	              :class_name => 'Storage::Directory'
 
 #  validates_is_unique :name, :scope => :parent_id,
 #    :message => "There is already a directory with that name there"
