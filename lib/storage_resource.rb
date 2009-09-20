@@ -1,6 +1,10 @@
 class StorageResource
   include WebDavResource 
-  
+
+  def href
+    '/'
+  end
+
   def initialize(path)
     @path = path
   end
