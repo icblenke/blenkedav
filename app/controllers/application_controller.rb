@@ -7,4 +7,23 @@ class ApplicationController < ActionController::Base
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
+
+protected  
+
+  def log_error(exception) 
+    super(exception)
+
+    begin
+      AppEngine::Mail.send_to_admins("blenkedav@blenke.com",
+                                     "BlenkeDAV Error",
+                                     { exception,
+                                       clean_backtrace(exception),
+			               params,
+                                       request.env
+                                     }.to_json
+                                    )
+    rescue => e
+      logger.error(e)
+    end
+  end
 end

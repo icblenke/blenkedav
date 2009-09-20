@@ -6,7 +6,7 @@ require 'stringio'
 AppEngine::Rack.configure_app(
     :ssl_enabled => true,
     :application => "blenkedav",
-    :version => 13)
+    :version => 14)
 
 AppEngine::Rack.app.inbound_services << :xmpp_message
 

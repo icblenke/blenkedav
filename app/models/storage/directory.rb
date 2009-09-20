@@ -15,6 +15,5 @@ class Storage::Directory
   belongs_to :parent, :child_key => [ :parent_id ],
 	              :class_name => 'Storage::Directory'
 
-#  validates_is_unique :name, :scope => :parent_id,
-#    :message => "There is already a directory with that name there"
+  validates_is_unique :name, :scope => :parent_id
 end
