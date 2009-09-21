@@ -21,6 +21,10 @@ class Storage::Directory
     self.path
   end
 
+  def properties
+    Array.new
+  end
+
   def move! (dest_path, depth)
     
   end
