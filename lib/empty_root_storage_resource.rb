@@ -1,4 +1,4 @@
-class StorageResource
+class EmptyRootStorageResource
   include WebDavResource 
 
   def href
@@ -7,8 +7,6 @@ class StorageResource
 
   def initialize(path)
     @path = path
-    @file=Storage::File.first( :name => @path )
-    @directory=Storage::Directory.first( :name => @path )
   end
     
   def properties
@@ -16,13 +14,7 @@ class StorageResource
   end
   
   def delete!
-    if file=Storage::File.first( :name => @path )
-      file.delete
-    else
-      if delete.Storage::Directory.first( :name => @path )
-        directory.delete
-      end
-    end
+
   end
   
   def move! (dest_path, depth)
@@ -38,22 +30,15 @@ class StorageResource
   end
   
   def collection?
-    return true if Storage::Directory.first( :name => @path )
-    false
+    true
   end
   
   def children
-    if dir=Storage::Directory.first( :name => @path )
-      dir.files.map do |file|
-        StorageResource.new("#{@path}/#{file.name}")
-      end
-    else
-      return []
-    end
+    return []
   end
 
   def get_displayname
-    URI.escape(self.displayname).gsub(/\+/, '%20') unless self.displayname.nil?
+    ""
   end
 
   def get_href

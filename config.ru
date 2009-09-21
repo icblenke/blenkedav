@@ -1,12 +1,12 @@
 require 'rubygems'
 require 'appengine-rack'
-require 'appengine-apis/xmpp'
+#require 'appengine-apis/xmpp'
 require 'stringio'
 
 AppEngine::Rack.configure_app(
     :ssl_enabled => true,
     :application => "blenkedav",
-    :version => 14)
+    :version => 15)
 
 AppEngine::Rack.app.inbound_services << :xmpp_message
 
